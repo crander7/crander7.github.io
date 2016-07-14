@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html ng-app="chatroom">
+  <head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body ng-controller="mainCtrl">
+    <header>
+      <div class="backImg">
+
+      </div>
+    </header>
+    <section class="main-section">
+      <div class="main-container">
+        <h1> DevMountain Chat Room </h1>
+        <form ng-submit="postMessage(message)">
+          <input class="form-control text-box" type="text" ng-model="message" placeholder="Message">
+        </form>
+        <input class="form-control text-box" id="search" type="text" placeholder="Search" ng-model="messageFilter">
+        <div class="messages-container">
+          <div class="messages" ng-repeat="message in messages | filter: messageFilter">
+            <div class="message-cont" ng-click="showCookie=!showCookie">
+              <div class="messageText">
+                <p ng-hide="showCookie">{{message.message}}</p>
+                <p ng-show="showCookie">{{message.cookie}}</p>
+              </div>
+              <div class="messageTime">
+                <p>{{message.createdAt | date: 'h:mm a'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/mainCtrl.js"></script>
+    <script src="js/parseService.js"></script>
+  </body>
+</html>
